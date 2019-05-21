@@ -143,17 +143,17 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
             for (Project project : ProjectManager.getAllProjects()) {
                 Element projectData = createProjectElement(project);
                 projectConfiguration.addContent(projectData);
-                if (projectAssignments) {
-                    Element users = new Element("assignedUsers", xmlns);
-                    projectData.addContent(users);
-                    for (User user : project.getBenutzer()) {
-                        Element userElement = new Element("user", xmlns);
-                        users.addContent(userElement);
-                        userElement.setAttribute("id", String.valueOf(user.getId()));
-                        userElement.setAttribute("login", user.getLogin());
-                        userElement.setAttribute("name", user.getNachVorname());
-                    }
-                }
+                //                if (projectAssignments) {
+                //                    Element users = new Element("assignedUsers", xmlns);
+                //                    projectData.addContent(users);
+                //                    for (User user : project.getBenutzer()) {
+                //                        Element userElement = new Element("user", xmlns);
+                //                        users.addContent(userElement);
+                //                        userElement.setAttribute("id", String.valueOf(user.getId()));
+                //                        userElement.setAttribute("login", user.getLogin());
+                //                        userElement.setAttribute("name", user.getNachVorname());
+                //                    }
+                //                }
             }
         }
         if (userGroups) {
@@ -340,6 +340,18 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
 
         userElement.setAttribute("customColumns", user.getCustomColumns() == null ? "" : user.getCustomColumns());
         userElement.setAttribute("customCss", user.getCustomCss() == null ? "" : user.getCustomCss());
+
+        if (projectAssignments) {
+            Element assignedProjects = new Element("assignedProjects", xmlns);
+            userElement.addContent(assignedProjects);
+            for (Project project :  user.getProjekte()) {
+                Element projectElement = new Element("project", xmlns);
+                assignedProjects.addContent(projectElement);
+                projectElement.setAttribute("id", String.valueOf(project.getId()));
+                projectElement.setAttribute("title", project.getTitel());
+            }
+        }
+
         return userElement;
     }
 
@@ -563,5 +575,4 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
 
         return projectElement;
     }
-
 }
