@@ -59,38 +59,38 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
 
     @Getter
     @Setter
-    private boolean ldapGroups;
+    private boolean ldapGroups = true;
     @Getter
     @Setter
-    private boolean userGroups;
+    private boolean userGroups = true;
     @Getter
     @Setter
-    private boolean user;
+    private boolean user = true;
     @Getter
     @Setter
-    private boolean includeInactiveUser;
+    private boolean includeInactiveUser = true;
     @Getter
     @Setter
-    private boolean createNewPasswords;
+    private boolean createNewPasswords = true;
     @Getter
     @Setter
-    private boolean projectAssignments;
+    private boolean projectAssignments = true;
     @Getter
     @Setter
-    private boolean usergroupAssignments;
+    private boolean usergroupAssignments = true;
     @Getter
     @Setter
-    private boolean projects;
+    private boolean projects = true;
     @Getter
     @Setter
-    private boolean rulesets;
+    private boolean rulesets = true;
     @Getter
     @Setter
-    private boolean dockets;
+    private boolean dockets = true;
 
     @Getter
     @Setter
-    private boolean includeFiles;
+    private boolean includeFiles = true;
 
     @Override
     public PluginType getType() {
@@ -143,17 +143,6 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
             for (Project project : ProjectManager.getAllProjects()) {
                 Element projectData = createProjectElement(project);
                 projectConfiguration.addContent(projectData);
-                //                if (projectAssignments) {
-                //                    Element users = new Element("assignedUsers", xmlns);
-                //                    projectData.addContent(users);
-                //                    for (User user : project.getBenutzer()) {
-                //                        Element userElement = new Element("user", xmlns);
-                //                        users.addContent(userElement);
-                //                        userElement.setAttribute("id", String.valueOf(user.getId()));
-                //                        userElement.setAttribute("login", user.getLogin());
-                //                        userElement.setAttribute("name", user.getNachVorname());
-                //                    }
-                //                }
             }
         }
         if (userGroups) {
@@ -180,7 +169,6 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
                         userElement.setAttribute("login", user.getLogin());
                         userElement.setAttribute("name", user.getNachVorname());
                     }
-
                 }
             }
         }
@@ -194,7 +182,6 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
                     users.addContent(userElement);
                 }
             }
-
         }
 
         // write created data into temporary file
