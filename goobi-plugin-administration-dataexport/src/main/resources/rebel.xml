@@ -7,7 +7,7 @@
 <application generated-by="eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
 
 	<classpath>
-		<dir name="/home/robert/eclipse-workspace/goobi-plugin-administration-dataexport/target/classes">
+		<dir name="/home/robert/git/goobi-plugin-administration-dataexport/goobi-plugin-administration-dataexport/target/classes">
 		</dir>
 	</classpath>
 

@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.context.ExternalContext;
@@ -20,12 +21,15 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang.StringUtils;
 import org.goobi.beans.Docket;
 import org.goobi.beans.Ldap;
+import org.goobi.beans.Process;
 import org.goobi.beans.Project;
 import org.goobi.beans.ProjectFileGroup;
 import org.goobi.beans.Ruleset;
 import org.goobi.beans.User;
 import org.goobi.beans.Usergroup;
 import org.goobi.production.enums.PluginType;
+import org.goobi.production.export.ExportXmlLog;
+import org.goobi.production.flow.statistics.hibernate.FilterHelper;
 import org.goobi.production.plugin.interfaces.IAdministrationPlugin;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -34,9 +38,13 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 import de.sub.goobi.config.ConfigurationHelper;
+import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.StorageProvider;
+import de.sub.goobi.helper.exceptions.DAOException;
+import de.sub.goobi.helper.exceptions.SwapException;
 import de.sub.goobi.persistence.managers.DocketManager;
 import de.sub.goobi.persistence.managers.LdapManager;
+import de.sub.goobi.persistence.managers.ProcessManager;
 import de.sub.goobi.persistence.managers.ProjectManager;
 import de.sub.goobi.persistence.managers.RulesetManager;
 import de.sub.goobi.persistence.managers.UserManager;
@@ -331,7 +339,7 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
         if (projectAssignments) {
             Element assignedProjects = new Element("assignedProjects", xmlns);
             userElement.addContent(assignedProjects);
-            for (Project project :  user.getProjekte()) {
+            for (Project project : user.getProjekte()) {
                 Element projectElement = new Element("project", xmlns);
                 assignedProjects.addContent(projectElement);
                 projectElement.setAttribute("id", String.valueOf(project.getId()));
@@ -561,5 +569,48 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
         }
 
         return projectElement;
+    }
+
+    public void generateExportFileForTemplates() {
+        String sql = FilterHelper.criteriaBuilder("", true, null, null, null, true, false);
+        List<Process> templates = ProcessManager.getProcesses(null, sql);
+
+        for (Process template : templates) {
+            Path dest = null;
+            try {
+                dest = Paths.get(template.getProcessDataDirectoryIgnoreSwapping(), template.getId() + "_db_export.xml");
+            } catch (IOException | InterruptedException | SwapException | DAOException e) {
+                log.error(e);
+                continue;
+            }
+            OutputStream os = null;
+
+            try {
+                os = Files.newOutputStream(dest);
+            } catch (IOException e) {
+                log.error(e);
+                Helper.setFehlerMeldung(e);
+                continue;
+            }
+            try {
+                Document doc = new ExportXmlLog().createExtendedDocument(template);
+                XMLOutputter outp = new XMLOutputter();
+                outp.setFormat(Format.getPrettyFormat());
+                outp.output(doc, os);
+            } catch (IOException e) {
+                log.error(e);
+                Helper.setFehlerMeldung(e);
+                continue;
+            } finally {
+                if (os != null) {
+                    try {
+                        os.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+            Helper.setMeldung("Generated export file for " + template.getTitel());
+        }
+
     }
 }

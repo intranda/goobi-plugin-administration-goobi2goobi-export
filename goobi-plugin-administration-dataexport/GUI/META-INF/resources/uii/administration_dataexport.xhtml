@@ -61,10 +61,10 @@
 }
 </style>
 
-        <h:panelGroup rendered="#{!LoginForm.hasRole('administration_import_data')}">
+        <h:panelGroup rendered="#{!LoginForm.hasRole('administration_export_data')}">
             <h:outputText
                 styleClass="alert alert-danger alert-dismissable margin-bottom-10 margin-top-10"
-                value="#{msgs.plugin_administration_missingPermission} administration_export_data"></h:outputText>
+                value="#{msgs.plugin_administration_missingPermission}  administration_export_data"></h:outputText>
         </h:panelGroup>
         <h:panelGroup
             layout="block"
@@ -111,7 +111,7 @@
                                 help=""
                                 fieldStyle="form-control"
                                 name="includeInactiveUser" />
-                                
+
                             <intranda:formInputCheckBox
                                 id="createNewPasswords"
                                 label="#{msgs.plugin_administration_export_overwritePasswords}"
@@ -143,8 +143,8 @@
                                 help=""
                                 fieldStyle="form-control"
                                 name="projects" />
-                            
-                                
+
+
                             <intranda:formInputCheckBox
                                 id="projectAssignments"
                                 label="#{msgs.plugin_administration_export_projectAssignments}"
@@ -182,6 +182,18 @@
                         </div>
                         <div class="form-actions">
                             <h:commandLink
+                                rendered="#{LoginForm.hasRole('administration_export_template_data')}"
+                                id="exportTemplates"
+                                styleClass="btn btn-success font-size-s margin-bottom-most margin-sides-10"
+                                title="#{msgs.plugin_administration_export_exportTemplateData}"
+                                action="#{AdministrationForm.administrationPlugin.generateExportFileForTemplates}">
+                                <i
+                                    class="fa fa-floppy-o margin-right-5"
+                                    title="#{msgs.plugin_administration_export_exportTemplateData}" />
+                                <h:outputText value="#{msgs.plugin_administration_export_exportTemplateData}" />
+                            </h:commandLink>
+
+                            <h:commandLink
                                 id="reloadRules"
                                 action="#{AdministrationForm.administrationPlugin.exportSelectedData}"
                                 styleClass="btn pull-right btn-success font-size-s margin-bottom-most margin-sides-10"
@@ -198,10 +210,6 @@
 
                 </div>
             </div>
-
-
-
-
 
         </h:panelGroup>
 
