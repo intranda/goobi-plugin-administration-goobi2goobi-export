@@ -1,9 +1,7 @@
-<?xml version="1.0"?>
-
-<project name="goobi-plugin-step-mixedocr" default="devbuild">
+<project name="goobi-plugin-administration-dataexport" default="devbuild">
 	<target name="devbuild">
 		<exec executable="mvn">
-			<arg value="package" />
+			<arg value="package"/>
 		</exec>
 		<copy file="module-gui/target/plugin_intranda_administration-dataexport-GUI.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
 		<copy file="module-main/target/plugin_intranda_administration-dataexport.jar" todir="/opt/digiverso/goobi/plugins/administration/"/>
