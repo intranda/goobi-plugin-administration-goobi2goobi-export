@@ -28,7 +28,6 @@ import org.goobi.beans.Ruleset;
 import org.goobi.beans.User;
 import org.goobi.beans.Usergroup;
 import org.goobi.production.enums.PluginType;
-import org.goobi.production.export.ExportXmlLog;
 import org.goobi.production.flow.statistics.hibernate.FilterHelper;
 import org.goobi.production.plugin.interfaces.IAdministrationPlugin;
 import org.jdom2.Document;
@@ -49,6 +48,7 @@ import de.sub.goobi.persistence.managers.ProjectManager;
 import de.sub.goobi.persistence.managers.RulesetManager;
 import de.sub.goobi.persistence.managers.UserManager;
 import de.sub.goobi.persistence.managers.UsergroupManager;
+import io.goobi.workflow.xslt.XsltPreparatorXmlLog;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -593,7 +593,7 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
                 continue;
             }
             try {
-                Document doc = new ExportXmlLog().createExtendedDocument(template);
+                Document doc = new XsltPreparatorXmlLog().createExtendedDocument(template);
                 XMLOutputter outp = new XMLOutputter();
                 outp.setFormat(Format.getPrettyFormat());
                 outp.output(doc, os);
