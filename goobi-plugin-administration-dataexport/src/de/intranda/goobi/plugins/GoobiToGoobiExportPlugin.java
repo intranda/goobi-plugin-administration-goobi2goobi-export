@@ -57,13 +57,13 @@ import net.xeoh.plugins.base.annotations.PluginImplementation;
 @PluginImplementation
 @Log4j
 
-public class ExportDatebasePlugin implements IAdministrationPlugin {
+public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
 
     private static Namespace xmlns = Namespace.getNamespace("http://www.goobi.io/logfile");
     private static final SimpleDateFormat dateConverter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     @Getter
-    private String title = "goobi-plugin-administration-database-export";
+    private String title = "intranda_administration_goobi2goobi_export";
 
     @Getter
     @Setter
@@ -107,7 +107,7 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
 
     @Override
     public String getGui() {
-        return "/uii/administration_dataexport.xhtml";
+        return "/uii/administration_goobi2goobi_export.xhtml";
     }
 
     public void exportSelectedData() {
@@ -201,8 +201,8 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
         Path temporaryFolder = null;
         try {
             temporaryFolder = Files.createTempDirectory("export");
-            xmlOutput = Files.createFile(Paths.get(temporaryFolder.toString(), "export.xml"));
-            zipFile = Paths.get(temporaryFolder.toString(), "export.zip");
+            xmlOutput = Files.createFile(Paths.get(temporaryFolder.toString(), "goobi-to-goobi-export.xml"));
+            zipFile = Paths.get(temporaryFolder.toString(), "goobi-to-goobi-export.zip");
         } catch (IOException e2) {
             log.error(e2);
             return;
@@ -223,7 +223,7 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
             try (FileSystem zipfs = FileSystems.newFileSystem(zipUri, env)) {
 
                 // Create internal path in the zipfs
-                Path internalTargetPath = zipfs.getPath("export.xml");
+                Path internalTargetPath = zipfs.getPath("goobi-to-goobi-export.xml");
                 //    Files.createDirectories(internalTargetPath.getParent());
                 // copy a file into the zip file
                 Files.copy(xmlOutput, internalTargetPath, StandardCopyOption.REPLACE_EXISTING);
@@ -261,7 +261,7 @@ public class ExportDatebasePlugin implements IAdministrationPlugin {
 
         ec.responseReset(); // Some JSF component library or some Filter might have set some headers in the buffer beforehand. We want to get rid of them, else it may collide.
         ec.setResponseContentType("application/zip");
-        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"export.zip\"");
+        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"goobi-to-goobi-export.zip\"");
 
         try {
             OutputStream output = ec.getResponseOutputStream();
