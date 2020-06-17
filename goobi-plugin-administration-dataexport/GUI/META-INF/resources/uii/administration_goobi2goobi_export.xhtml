@@ -163,9 +163,8 @@
                         
 	                        <div class="form-actions">
 	                            <h:commandLink
-	                                rendered="#{LoginForm.hasRole('Plugin_goobi2goobi_export_template')}"
 	                                id="exportTemplates"
-	                                styleClass="btn font-size-s margin-bottom-most margin-sides-10"
+	                                styleClass="btn font-size-s margin-sides-10"
 	                                title="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}"
 	                                action="#{AdministrationForm.administrationPlugin.generateExportFileForTemplates}">
 	                                <i class="fa fa-floppy-o margin-right-5"
@@ -176,7 +175,7 @@
 	                            <h:commandLink
 	                                id="reloadRules"
 	                                action="#{AdministrationForm.administrationPlugin.exportSelectedData}"
-	                                styleClass="btn pull-right btn-success font-size-s margin-bottom-most margin-sides-10"
+	                                styleClass="btn pull-right btn-success font-size-s margin-sides-10"
 	                                title="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}">
 	                                <i
 	                                    class="fa fa-file-archive-o margin-right-5"
