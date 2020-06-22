@@ -67,127 +67,153 @@
                 value="#{msgs.plugin_administration_missingPermission} Plugin_goobi2goobi_export"></h:outputText>
         </h:panelGroup>
         
-         <h:form id="tableForm" styleClass="form-horizontal form-bordered" rendered="#{LoginForm.hasRole('Plugin_goobi2goobi_export')}">
-	        <span class="alert alert-warning block" style="margin-top: 15px; margin-bottom:5px; font-size: 13px;">
+        
+        <h:panelGroup rendered="#{LoginForm.hasRole('Plugin_goobi2goobi_export')}">
+        
+			<span class="alert alert-warning block" style="margin-top: 15px; margin-bottom:5px; font-size: 13px;">
 				<i class="fa fa-exclamation-triangle " style="margin-right: 5px;"/> 
-	    		#{msgs.plugin_administration_goobi2goobi_export_notice}
-	    	</span>
+				#{msgs.plugin_administration_goobi2goobi_export_notice}
+			</span>
 	        
-	        <div class="row" role="main">
-	            <div class="col-sm-12">
-	                <div class="box box-color box-bordered">
-	                    <div class="box-title">
-							<h2>
-								<i class="fa fa-plug"></i>
-								<h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_selectData}" />
-							</h2>
-						</div>
-                   
-                        <div class="box-content nopadding">
-                            <intranda:formInputCheckBox
-                                id="ldapGroup"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_ldapGroups}"
-                                field="#{AdministrationForm.administrationPlugin.ldapGroups}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_ldapGroups_help}"
-                                name="ldapGroup" />
-
-                            <intranda:formInputCheckBox
-                                id="user"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_user}"
-                                field="#{AdministrationForm.administrationPlugin.user}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_user_help}"
-                                name="user" />
-
-                            <intranda:formInputCheckBox
-                                id="includeInactiveUser"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_includeInactiveUser}"
-                                field="#{AdministrationForm.administrationPlugin.includeInactiveUser}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_includeInactiveUser_help}"
-                                name="includeInactiveUser" />
-
-                            <intranda:formInputCheckBox
-                                id="createNewPasswords"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_overwritePasswords}"
-                                field="#{AdministrationForm.administrationPlugin.createNewPasswords}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_overwritePasswords_help}"
-                                name="createNewPasswords" />
-
-                            <intranda:formInputCheckBox
-                                id="userGroups"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_userGroups}"
-                                field="#{AdministrationForm.administrationPlugin.userGroups}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_userGroups_help}"
-                                name="userGroups" />
-
-                            <intranda:formInputCheckBox
-                                id="usergroupAssignments"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_usergroupAssignments}"
-                                field="#{AdministrationForm.administrationPlugin.usergroupAssignments}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_usergroupAssignments_help}"
-                                name="usergroupAssignments" />
-
-                            <intranda:formInputCheckBox
-                                id="projects"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_projects}"
-                                field="#{AdministrationForm.administrationPlugin.projects}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_projects_help}"
-                                name="projects" />
-
-                            <intranda:formInputCheckBox
-                                id="projectAssignments"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_projectAssignments}"
-                                field="#{AdministrationForm.administrationPlugin.projectAssignments}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_projectAssignments_help}"
-                                name="projectAssignments" />
-
-                            <intranda:formInputCheckBox
-                                id="rulesets"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_rulesets}"
-                                field="#{AdministrationForm.administrationPlugin.rulesets}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_rulesets_help}"
-                                name="rulesets" />
-
-                            <intranda:formInputCheckBox
-                                id="dockets"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_dockets}"
-                                field="#{AdministrationForm.administrationPlugin.dockets}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_dockets_help}"
-                                name="dockets" />
-
-                            <intranda:formInputCheckBox
-                                id="includeFiles"
-                                label="#{msgs.plugin_administration_goobi2goobi_export_includeFiles}"
-                                field="#{AdministrationForm.administrationPlugin.includeFiles}"
-                                help="#{msgs.plugin_administration_goobi2goobi_export_includeFiles_help}"
-                                name="includeFiles" />
-                        
-	                        <div class="form-actions">
-	                            <h:commandLink
-	                                id="exportTemplates"
-	                                styleClass="btn font-size-s margin-sides-10"
-	                                title="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}"
-	                                action="#{AdministrationForm.administrationPlugin.generateExportFileForTemplates}">
-	                                <i class="fa fa-floppy-o margin-right-5"
-	                                    title="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}" />
-	                                <h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}" />
-	                            </h:commandLink>
-	
-	                            <h:commandLink
-	                                id="reloadRules"
-	                                action="#{AdministrationForm.administrationPlugin.exportSelectedData}"
-	                                styleClass="btn pull-right btn-success font-size-s margin-sides-10"
-	                                title="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}">
-	                                <i
-	                                    class="fa fa-file-archive-o margin-right-5"
-	                                    title="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}" />
-	                                <h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}" />
-	                            </h:commandLink>
-							</div>
-                        </div>
-                    </div>
-    	        </div>
-	        </div>
-		</h:form>
+		         <h:form id="templatesForm" styleClass="form-horizontal form-bordered">
+			        
+			        <div class="row" role="main">
+			            <div class="col-sm-12">
+			                <div class="box box-color lightgrey box-bordered">
+			                    <div class="box-title">
+									<h2>
+										<i class="fa fa-plug"></i>
+										<h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_templates}" />
+									</h2>
+								</div>
+		                   
+		                        <div class="box-content nopadding">
+		                        	<h:outputText styleClass="margin-sides-10 margin-top-most" value="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateDescription}" />
+		                            <div class="form-actions">
+			                            <h:commandLink
+			                                id="exportTemplates"
+			                                styleClass="btn btn-primary pull-right font-size-s margin-sides-10 margin-bottom-most"
+			                                title="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}"
+			                                action="#{AdministrationForm.administrationPlugin.generateExportFileForTemplates}">
+			                                <i class="fa fa-floppy-o margin-right-5"
+			                                    title="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}" />
+			                                <h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}" />
+			                            </h:commandLink>
+									</div>
+		                        </div>
+		                    </div>
+		    	        </div>
+			        </div>
+				</h:form>
+		
+		        <h:form id="tableForm" styleClass="form-horizontal form-bordered">
+			        
+			        <div class="row" role="main">
+			            <div class="col-sm-12">
+			                <div class="box box-color orange box-bordered">
+			                    <div class="box-title">
+									<h2>
+										<i class="fa fa-plug"></i>
+										<h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_infrastructure}" />
+									</h2>
+								</div>
+		                   
+		                        <div class="box-content nopadding">
+		                            <intranda:formInputCheckBox
+		                                id="ldapGroup"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_ldapGroups}"
+		                                field="#{AdministrationForm.administrationPlugin.ldapGroups}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_ldapGroups_help}"
+		                                name="ldapGroup" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="user"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_user}"
+		                                field="#{AdministrationForm.administrationPlugin.user}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_user_help}"
+		                                name="user" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="includeInactiveUser"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_includeInactiveUser}"
+		                                field="#{AdministrationForm.administrationPlugin.includeInactiveUser}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_includeInactiveUser_help}"
+		                                name="includeInactiveUser" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="createNewPasswords"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_overwritePasswords}"
+		                                field="#{AdministrationForm.administrationPlugin.createNewPasswords}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_overwritePasswords_help}"
+		                                name="createNewPasswords" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="userGroups"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_userGroups}"
+		                                field="#{AdministrationForm.administrationPlugin.userGroups}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_userGroups_help}"
+		                                name="userGroups" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="usergroupAssignments"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_usergroupAssignments}"
+		                                field="#{AdministrationForm.administrationPlugin.usergroupAssignments}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_usergroupAssignments_help}"
+		                                name="usergroupAssignments" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="projects"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_projects}"
+		                                field="#{AdministrationForm.administrationPlugin.projects}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_projects_help}"
+		                                name="projects" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="projectAssignments"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_projectAssignments}"
+		                                field="#{AdministrationForm.administrationPlugin.projectAssignments}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_projectAssignments_help}"
+		                                name="projectAssignments" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="rulesets"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_rulesets}"
+		                                field="#{AdministrationForm.administrationPlugin.rulesets}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_rulesets_help}"
+		                                name="rulesets" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="dockets"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_dockets}"
+		                                field="#{AdministrationForm.administrationPlugin.dockets}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_dockets_help}"
+		                                name="dockets" />
+		
+		                            <intranda:formInputCheckBox
+		                                id="includeFiles"
+		                                label="#{msgs.plugin_administration_goobi2goobi_export_includeFiles}"
+		                                field="#{AdministrationForm.administrationPlugin.includeFiles}"
+		                                help="#{msgs.plugin_administration_goobi2goobi_export_includeFiles_help}"
+		                                name="includeFiles" />
+		                        
+			                        <div class="form-actions">
+			                            <h:commandLink
+			                                id="reloadRules"
+			                                action="#{AdministrationForm.administrationPlugin.exportSelectedData}"
+			                                styleClass="btn pull-right btn-success font-size-s margin-bottom-most	"
+			                                title="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}">
+			                                <i
+			                                    class="fa fa-file-archive-o margin-right-5"
+			                                    title="#{msgs.plugin_administration_goobi2goobi_export_exportSelectedData}" />
+			                                <h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_exportInfrastructure}" />
+			                            </h:commandLink>
+									</div>
+		                        </div>
+		                    </div>
+		    	        </div>
+			        </div>
+				</h:form>
+			</h:panelGroup>
 		    
     </composite:implementation>
 
