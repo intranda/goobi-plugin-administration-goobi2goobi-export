@@ -20,6 +20,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.goobi.beans.Docket;
+import org.goobi.beans.Institution;
+import org.goobi.beans.InstitutionConfigurationObject;
 import org.goobi.beans.Ldap;
 import org.goobi.beans.Process;
 import org.goobi.beans.Project;
@@ -178,6 +180,14 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
                         userElement.setAttribute("name", user.getNachVorname());
                     }
                 }
+
+
+                Institution inst = ug.getInstitution();
+                Element institutionElement = new Element("institution", xmlns);
+                institutionElement.setAttribute("id", String.valueOf(inst.getId()));
+                institutionElement.setAttribute("shortName", inst.getShortName());
+                institutionElement.setAttribute("longName", inst.getLongName());
+                userGroup.addContent(institutionElement);
             }
         }
 
@@ -346,6 +356,13 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
                 projectElement.setAttribute("title", project.getTitel());
             }
         }
+
+        Institution inst = user.getInstitution();
+        Element institutionElement = new Element("institution", xmlns);
+        institutionElement.setAttribute("id", String.valueOf(inst.getId()));
+        institutionElement.setAttribute("shortName", inst.getShortName());
+        institutionElement.setAttribute("longName", inst.getLongName());
+        userElement.addContent(institutionElement);
 
         return userElement;
     }
@@ -567,6 +584,71 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
                 fileGroups.addContent(projectFileGroup);
             }
         }
+        Element institutionElement = new Element("institution", xmlns);
+        Institution inst = project.getInstitution();
+        institutionElement.setAttribute("id", String.valueOf(inst.getId()));
+        institutionElement.setAttribute("shortName", inst.getShortName());
+        institutionElement.setAttribute("longName", inst.getLongName());
+        if (inst.isAllowAllAuthentications()) {
+            institutionElement.setAttribute("allowAllAuthentications", "true");
+        } else {
+            institutionElement.setAttribute("allowAllAuthentications", "false");
+            for (InstitutionConfigurationObject ico : inst.getAllowedAuthentications()) {
+                Element type = new Element("authentication", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+        }
+
+        if (inst.isAllowAllDockets()) {
+            institutionElement.setAttribute("allowAllDockets", "true");
+        } else {
+            institutionElement.setAttribute("allowAllDockets", "false");
+            for (InstitutionConfigurationObject ico : inst.getAllowedDockets()) {
+                Element type = new Element("docket", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+        }
+        //inst.isAllowAllPlugins()
+        if (inst.isAllowAllPlugins()) {
+            institutionElement.setAttribute("allowAllPlugins", "true");
+        } else {
+            institutionElement.setAttribute("allowAllPlugins", "false");
+            for (InstitutionConfigurationObject ico : inst.getAllowedAdministrationPlugins()) {
+                Element type = new Element("administrationPlugin", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+            for (InstitutionConfigurationObject ico : inst.getAllowedWorkflowPlugins()) {
+                Element type = new Element("workflowPlugin", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+            for (InstitutionConfigurationObject ico : inst.getAllowedDashboardPlugins()) {
+                Element type = new Element("dashboardPlugin", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+            for (InstitutionConfigurationObject ico : inst.getAllowedStatisticsPlugins()) {
+                Element type = new Element("statisticsPlugin", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+
+        }
+        if (inst.isAllowAllRulesets()) {
+            institutionElement.setAttribute("allowAllRulesets", "true");
+        } else {
+            institutionElement.setAttribute("allowAllRulesets", "false");
+            for (InstitutionConfigurationObject ico : inst.getAllowedRulesets()) {
+                Element type = new Element("ruleset", xmlns);
+                type.setText(ico.getObject_name());
+                institutionElement.addContent(type);
+            }
+        }
+
+        projectElement.addContent(institutionElement);
 
         return projectElement;
     }
