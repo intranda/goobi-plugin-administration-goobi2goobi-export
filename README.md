@@ -15,8 +15,8 @@ Detail | Description
 **Plugin identifier**       | intranda_administration_goobi2goobi_export
 **Plugin type**             | Administration plugin
 **Licence**                 | GPL 2.0 or newer
-**Documentation (German)**  | [https://docs.goobi.io/goobi-workflow-plugins-de/administration/plugin_intranda_adminstration_goobi2goobi](https://docs.goobi.io/goobi-workflow-plugins-de/administration/plugin_intranda_adminstration_goobi2goobi)
-**Documentation (English)** | [https://docs.goobi.io/goobi-workflow-plugins-en/administration/plugin_intranda_adminstration_goobi2goobi](https://docs.goobi.io/goobi-workflow-plugins-en/administration/plugin_intranda_adminstration_goobi2goobi)
+**Documentation (German)**  | https://docs.goobi.io/goobi-workflow-plugins-de/administration/intranda_adminstration_goobi2goobi 
+**Documentation (English)** | https://docs.goobi.io/goobi-workflow-plugins-en/administration/intranda_adminstration_goobi2goobi 
 
 ## Goobi details
 
