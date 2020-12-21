@@ -1,4 +1,4 @@
-# Goobi Administration Plugin: goobi-plugin-administration-goobi2goobi-export
+# Goobi workflow Plugin: goobi-plugin-administration-goobi2goobi-export
 
 <img src="https://goobi.io/wp-content/uploads/logo_goobi_plugin.png" align="right" style="margin:0 0 20px 20px;" alt="Plugin for Goobi workflow" width="175" height="109">
 
@@ -15,8 +15,8 @@ Detail | Description
 **Plugin identifier**       | intranda_administration_goobi2goobi_export
 **Plugin type**             | Administration plugin
 **Licence**                 | GPL 2.0 or newer
-**Documentation (German)**  | https://docs.goobi.io/goobi-workflow-plugins-de/administration/intranda_adminstration_goobi2goobi 
-**Documentation (English)** | https://docs.goobi.io/goobi-workflow-plugins-en/administration/intranda_adminstration_goobi2goobi 
+**Documentation (German)**  | https://docs.goobi.io/goobi-workflow-plugins-de/administration/intranda_adminstration_goobi2goobi
+**Documentation (English)** | https://docs.goobi.io/goobi-workflow-plugins-en/administration/intranda_adminstration_goobi2goobi
 
 ## Goobi details
 
