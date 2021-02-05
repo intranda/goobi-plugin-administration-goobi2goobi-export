@@ -50,7 +50,7 @@ import de.sub.goobi.persistence.managers.ProjectManager;
 import de.sub.goobi.persistence.managers.RulesetManager;
 import de.sub.goobi.persistence.managers.UserManager;
 import de.sub.goobi.persistence.managers.UsergroupManager;
-import io.goobi.workflow.xslt.XsltPreparatorXmlLog;
+import io.goobi.workflow.xslt.XsltPreparatorMetadata;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -675,7 +675,7 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
                 continue;
             }
             try {
-                Document doc = new XsltPreparatorXmlLog().createExtendedDocument(template);
+                Document doc = new XsltPreparatorMetadata().createDocument(template, true);
                 XMLOutputter outp = new XMLOutputter();
                 outp.setFormat(Format.getPrettyFormat());
                 outp.output(doc, os);
