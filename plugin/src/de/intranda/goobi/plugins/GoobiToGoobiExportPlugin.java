@@ -41,8 +41,6 @@ import org.jdom2.output.XMLOutputter;
 import de.sub.goobi.config.ConfigurationHelper;
 import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.StorageProvider;
-import de.sub.goobi.helper.exceptions.DAOException;
-import de.sub.goobi.helper.exceptions.SwapException;
 import de.sub.goobi.persistence.managers.DocketManager;
 import de.sub.goobi.persistence.managers.LdapManager;
 import de.sub.goobi.persistence.managers.ProcessManager;
@@ -195,7 +193,7 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
             Element users = new Element("users", xmlns);
             rootElement.addContent(users);
             for (User user : UserManager.getAllUsers()) {
-                if (includeInactiveUser || user.isIstAktiv()) {
+                if (includeInactiveUser || user.isActive()) {
                     Element userElement = createUserElement(user);
                     users.addContent(userElement);
                 }
@@ -296,8 +294,7 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
         userElement.setAttribute("lastname", user.getNachname() == null ? "" : user.getNachname());
         userElement.setAttribute("login", user.getLogin() == null ? "" : user.getLogin());
         userElement.setAttribute("ldaplogin", user.getLdaplogin() == null ? "" : user.getLdaplogin());
-        userElement.setAttribute("active", String.valueOf(user.isIstAktiv()));
-        userElement.setAttribute("visible", user.getIsVisible() == null ? "" : user.getIsVisible());
+        userElement.setAttribute("active", String.valueOf(user.isActive()));
         userElement.setAttribute("place", user.getStandort() == null ? "" : user.getStandort());
         userElement.setAttribute("tablesize", String.valueOf(user.getTabellengroesse()));
         userElement.setAttribute("sessionlength", String.valueOf(user.getSessiontimeout()));
@@ -661,7 +658,7 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
             Path dest = null;
             try {
                 dest = Paths.get(template.getProcessDataDirectoryIgnoreSwapping(), template.getId() + "_db_export.xml");
-            } catch (IOException | InterruptedException | SwapException | DAOException e) {
+            } catch (IOException  e) {
                 log.error(e);
                 continue;
             }
