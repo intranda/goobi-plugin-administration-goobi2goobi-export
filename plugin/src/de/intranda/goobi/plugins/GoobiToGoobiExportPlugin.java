@@ -179,7 +179,6 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
                     }
                 }
 
-
                 Institution inst = ug.getInstitution();
                 Element institutionElement = new Element("institution", xmlns);
                 institutionElement.setAttribute("id", String.valueOf(inst.getId()));
@@ -652,13 +651,13 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
 
     public void generateExportFileForTemplates() {
         String sql = FilterHelper.criteriaBuilder("", true, null, null, null, true, false);
-        List<Process> templates = ProcessManager.getProcesses(null, sql);
+        List<Process> templates = ProcessManager.getProcesses(null, sql, null);
 
         for (Process template : templates) {
             Path dest = null;
             try {
                 dest = Paths.get(template.getProcessDataDirectoryIgnoreSwapping(), template.getId() + "_db_export.xml");
-            } catch (IOException  e) {
+            } catch (IOException e) {
                 log.error(e);
                 continue;
             }
