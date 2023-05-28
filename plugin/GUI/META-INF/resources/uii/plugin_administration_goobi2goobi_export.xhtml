@@ -14,53 +14,6 @@
     </composite:interface>
 
     <composite:implementation>
-        <style>
-.dataTables_wrapper {
-    overflow-x: auto;
-}
-
-.dataTables_wrapper .row {
-    margin: 0;
-}
-
-.dataTables_wrapper div[class*="col-xs"] {
-    padding: 0 5px;
-}
-
-.dataTables_wrapper .dataTables_filter {
-    float: none;
-    max-width: 100%;
-    margin: 10px 0;
-}
-
-.dataTables_filter.dataTables_length ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.dataTables_filter.dataTables_length ul li {
-    display: inline-block;
-}
-
-.dataTables_filter.dataTables_length .btn {
-    display: block;
-    padding: 4px 9px;
-}
-
-.popup-ul {
-    padding-left: 0px;
-    margin: 0px;
-    list-style-type: none;
-    margin-bottom: 3px;
-}
-
-.resizableSelection {
-    resize: vertical;
-    min-height: 150px;
-    max-height: 800px;
-}
-</style>
 
         <h:outputText
             rendered="#{!LoginForm.hasRole('Plugin_goobi2goobi_export')}"
