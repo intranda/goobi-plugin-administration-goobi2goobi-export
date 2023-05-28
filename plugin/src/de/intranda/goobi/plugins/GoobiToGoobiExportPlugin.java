@@ -107,7 +107,7 @@ public class GoobiToGoobiExportPlugin implements IAdministrationPlugin {
 
     @Override
     public String getGui() {
-        return "/uii/administration_goobi2goobi_export.xhtml";
+        return "/uii/plugin_administration_goobi2goobi_export.xhtml";
     }
 
     public void exportSelectedData() {
