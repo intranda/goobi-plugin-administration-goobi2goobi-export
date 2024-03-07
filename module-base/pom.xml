@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.goobi.workflow.plugin</groupId>
-    <artifactId>plugin-workflow-goobi-plugin-administration-goobi2goobi-export-deps</artifactId>
+    <artifactId>plugin-administration-goobi2goobi-export</artifactId>
     <version>24.03-SNAPSHOT</version>
   </parent>
-  <artifactId>plugin-workflow-goobi-plugin-administration-goobi2goobi-export-deps-base</artifactId>
+  <artifactId>plugin-administration-goobi2goobi-export-base</artifactId>
   <packaging>jar</packaging>
 </project>
