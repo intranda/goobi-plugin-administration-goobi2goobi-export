@@ -15,9 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-
 import org.apache.commons.lang.StringUtils;
 import org.goobi.beans.Docket;
 import org.goobi.beans.Institution;
@@ -49,6 +46,8 @@ import de.sub.goobi.persistence.managers.RulesetManager;
 import de.sub.goobi.persistence.managers.UserManager;
 import de.sub.goobi.persistence.managers.UsergroupManager;
 import io.goobi.workflow.xslt.XsltPreparatorMetadata;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
