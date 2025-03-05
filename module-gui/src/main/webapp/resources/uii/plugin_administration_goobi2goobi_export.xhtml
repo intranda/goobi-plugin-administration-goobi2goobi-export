@@ -4,7 +4,7 @@
     xmlns:composite="http://xmlns.jcp.org/jsf/composite"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:intranda="http://xmlns.jcp.org/jsf/composite/compositesPG"
+    xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui"
     xmlns:jsf="http://xmlns.jcp.org/jsf">
@@ -18,24 +18,24 @@
             rendered="#{!LoginForm.hasRole('Plugin_goobi2goobi_export')}"
             styleClass="alert alert-danger d-block"
             value="#{msgs.plugin_administration_missingPermission} Plugin_goobi2goobi_export"/>
-        
+
         <ui:fragment rendered="#{LoginForm.hasRole('Plugin_goobi2goobi_export')}">
-        
+
 			<span class="alert alert-warning d-block mb-3">
-				<i class="fa fa-exclamation-triangle me-3"/> 
+				<i class="fa fa-exclamation-triangle me-3"/>
 				<h:outputText
                     value="#{msgs.plugin_administration_goobi2goobi_export_notice}"/>
         	</span>
-	        
+
 		         <h:form id="templatesForm">
-			        
+
                     <intranda:box
                         boxClass="mb-3"
                         boxType="neutral"
                         boxPadding="true"
                         icon="fa-plug"
                         title="#{msgs.plugin_administration_goobi2goobi_export_templates}">
-                        
+
                         <h:outputText styleClass="margin-sides-10 margin-top-most" value="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateDescription}" />
                         <div class="form-actions">
                             <button
@@ -48,21 +48,21 @@
                                     <h:outputText value="#{msgs.plugin_administration_goobi2goobi_export_exportTemplateData}" />
                                 </span>
                             </button>
-                            
+
 						</div>
                     </intranda:box>
-                    
+
 				</h:form>
-		
+
 		        <h:form id="tableForm">
-			        
+
                     <intranda:box
                         boxType="action"
                         boxPadding="false"
                         boxForm="true"
                         icon="fa-plug"
                         title="#{msgs.plugin_administration_goobi2goobi_export_infrastructure}">
-                        
+
                         <intranda:formInputCheckBox
                             id="ldapGroup"
                             label="#{msgs.plugin_administration_goobi2goobi_export_ldapGroups}"
@@ -139,7 +139,7 @@
                             field="#{AdministrationForm.administrationPlugin.includeFiles}"
                             help="#{msgs.plugin_administration_goobi2goobi_export_includeFiles_help}"
                             name="includeFiles" />
-                            
+
                         <div class="form-actions">
                             <button
                                 class="btn btn-success"
@@ -153,10 +153,10 @@
                             </button>
 			            </div>
                     </intranda:box>
-                    
+
 				</h:form>
 			</ui:fragment>
-		    
+
     </composite:implementation>
 
 </ui:composition>
