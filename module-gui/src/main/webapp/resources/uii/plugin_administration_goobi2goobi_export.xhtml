@@ -15,17 +15,11 @@
 
     <composite:implementation>
 
-        <h:outputText
-            rendered="#{!LoginForm.hasRole('Plugin_goobi2goobi_export')}"
-            styleClass="alert alert-danger d-block"
-            value="#{msgs.plugin_administration_missingPermission} Plugin_goobi2goobi_export"/>
+        <util:missing-rights rights="Plugin_goobi2goobi_export" rendered="true" />
 
         <ui:fragment rendered="#{LoginForm.hasRole('Plugin_goobi2goobi_export')}">
 
-			<span class="alert alert-warning d-block mb-3">
-				<h:outputText
-                    value="#{msgs.plugin_administration_goobi2goobi_export_notice}"/>
-        	</span>
+			<util:alert type="warning" styleClass="d-block" message="#{msgs.plugin_administration_goobi2goobi_export_notice}" />
 
 		         <h:form id="templatesForm">
 
